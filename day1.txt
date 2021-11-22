@@ -376,4 +376,162 @@ centos
 centos123
 
 [sudo -s] To become a root
+=========================================================================================
+
+How to connect vms?
+----------------------------------------------
+---> Go inside a vm and work using SHELL
+---> Access a VM from outside Network
+
+
+
+
+
+----------------------------------------------------------------------
+Physical server is running		Virtual server is running	Container is running
+as long as long				as long as long			as long as long
+PID 1 is running			PID 1 is running		PID 1 is running
+
+PID 1 is SYSTEMD			PID 1 is SYSTEMD		PID 1 can be ANYTHING
+									- ls
+									- bash
+									- java
+									- python
+									- a
+How to NOT EXIT?
+-- backgroud process or DEAMON
+
+python3
+httpd-foreground
+=======================================================
+run
+------------------------------------------
+pull + create + start + get inside AKA attach to container PID 1
+
+run -d
+------------------------------------------
+pull + create + start + do not get inside AKA deattach from container PID 1
+
+=================================================
+
+
+python file.py	==> docker image - ser PID 1=python
+python2 file.py ==> docker image - ser PID 1=python2
+					doker run python file.py
+
+javac file.java
+
+
+
+  151  docker stop -f $(docker ps -a -q)
+  152   docker kill $(docker ps -q)
+  153  docker rm -f $(docker ps -a -q)
+  154  clear
+  155  docker ps -a
+  156  clear
+  157  ls
+  158  docker run httpd
+  159  docker ps -a
+  160  clear
+  161  docker run ubuntu
+  162  docker ps
+  163  docker ps -a
+  164  clear
+  165  docker run -d httpd
+  166  docker run -d httpd
+  167  docker run -d httpd
+  168  docker ps -a
+  169  clear
+  170  docker run -d ubuntu
+  171  docker run -d ubuntu
+  172  docker ps -a
+
+
+
+
+
+How to use container?
+----------------------------------------------
+---> Go inside a container and work using SHELL
+exec
+	this would execute an executable inside a container
+	You can interact with container using -it and bash option
+		
+  176  docker ps
+  177  docker exec db939ca8d135 ls
+  178  docker exec db939ca8d135 df -kh
+  179  clear
+  180  docker exec db939ca8d135 ps
+  181  sdfsdf
+  182  docker exec db939ca8d135 /bin/bash
+  183  docker exec -it db939ca8d135 /bin/bash
+
+
+attach
+
+	this would attach to the PID1
+
+ 186  docker ps
+  187  docker attach db939ca8d135
+  188  docker ps
+  189  clear
+  190  docker run ubuntu
+  191  docker ps -a
+  192  clear
+  193  docker run ubuntu /bin/bash
+  194  docker ps -a
+  195  clear
+  196  docker run -it ubuntu /bin/bash
+  197  docker ps -a
+  198  clear
+  199  docker run -it ubuntu /bin/bash
+  200  docker ps
+  201  docker run -itd ubuntu /bin/bash
+  202  docker run -itd ubuntu /bin/bash
+  203  docker run -itd ubuntu /bin/bash
+  204  docker run -itd ubuntu /bin/bash
+  205  docker run -itd ubuntu /bin/bash
+  206  clear
+  207  docker ps -a
+  208  clear
+  209  history
+  210  clear
+  211  docker ps
+  212  docker attach 8ced223eed41
+
+
+---> Access a container from outside Network
+
+
+How to come out of the container without EXIT?
+control + p+ q
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+s
 
