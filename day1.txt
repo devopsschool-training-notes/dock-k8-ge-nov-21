@@ -1,0 +1,237 @@
+Rajesh Kumar
+---------------------------------------
+Docker - 2 Days
+Kubern - 3 Days
+=====================
+Demo + LAB = AWS
+======================
+10 AM IST - 6 PM IST
+-----------------------
+Lunch - 
+	1 - 2 PM
+BREAK 
+	15 mins
+	- 11.30
+	- 4:00
+----------------------------
+What is Docker?
+-------------------------------
+	- Tool
+	- Platform
+		For 
+			Managing Container
+	Release
+		CE
+		EE
+		https://www.devopsschool.com/blog/?s=docker+enterprise
+	Version
+		20.X
+	Written in Go Lang
+	FREE + OS
+	By Soloman Hykes
+
+TOOL
+	Save time
+		during running apps
+		P.S	VS		Container
+		-------------------------------
+		1 DAY --> 5 mins ->  1 Sec
+	Save cost
+		Running a app in container is lightweight
+		- less cpu
+		- less ram
+		- less stor
+		- no os	
+	Improve a Quality of work
+
+
+What is Container?
+---------------------------------
+is a APP run time env
+is a APP fully independent run time env
+is a APP fully independent light run time env
+is a APP fully independent light run time env - called light vm
+
+is a 
+	collection of 
+	1 init of Net ns
+	1 init of PID ns
+	1 init of mnt ns
+	1 init of user ns
+	---------------
+	SAME USER IS ATTACHED WOHT NET +PID + MNT
+
+
+-----------
+Container is NOT OS - thus no lean OS
+Container is NOT VM - thus no lean VM
+
+=============================================================
+What are the Resources you require to RUN a App?
+=============================================================
+
+HARDWARE
+	- OS
+	     - PREREQ
+		     - APP
+============================================
+HARDWARE
+	- OS
+		KERNAL(boot)
+			Namepspace
+
+					FROM	Require		Can Create 		OS ALLOWED
+			FILESYSTEM	MNTNS	1		UNLIMITED		1
+			(root+user)
+			USER		USERNS	1		UNLIMITED		UNLIMITED		
+			PID		PIDNS	1		UNLIMITED		1
+			Network		NETNS	1		UNLIMITED		1
+			
+		     			- APP(apache)
+			
+			Cababilities		
+			USERS require a permission to run perm.
+
+			CGROUPS
+			- Allocate CPU and RAM to pID
+============================================
+What is KERNAL?
+The kernel is a computer program at the core of a computer's operating system and has complete control over everything in the system. 
+
+What is FILESYSTEM?
+- a collection of files/dir for specific purpose
+
+BOOT FILESYSTEM === KERNAL
+ROOT FILESYSTEM 
+USER FILESYSTEM 
+APP FILESYSTEM 
+
+
+APP < USER < ROOT < BOOT
+
+
+BOOT -> ROOT -> USER -> APP
+============================================
+Linux	- centos/ubuntu -> root -> ls or java or xyz
+Windows
+================================================================================================
+How we run APPS througout a history?
+------------------------------------------------------------------------------------------------
+PHYSICAL SERVER		--> Virtual Server ------> 
+================================================================================
+HD
+OS
+KER
+NS
+1 RFS
+1 NET
+1 USER
+1 PID
+-------------
+APP
+
+		
+=====================================================================================================
+Docker Architecutre
+==============================
+
+Human -> Docker client ---REST--> Docker Sever -> ContainerD --> Kernal 
+        ---------------------------------
+		Docker Engine
+
+https://www.devopsschool.com/blog/list-of-top-container-runtime-interface-projects/
+
+-----------------------------
+
+Docker Components
+-------------------------------------------------
+Docker Engine -
+-----------------------
+
+Vm Image Contains
+-----------------------------------------
+BOOT FS + ROOT FS + USER FS + APP FS
+
+Docker Image - 
+-----------------------------------------
+ROOT FS + USER FS	 
+ROOT FS + USER FS + APP FS
+ROOT FS + USER FS + APP FS + APP FS
+
+1 COPY of Image Get MNT(attach) for each container
+From 1 Image - u can create Un limited of container
+
+Docker Registry
+----------------
+	Contains - Repository
+			Contains 
+				Version of FILESYSTEM(B+R+U+A)
+			=============
+			Docker Image
+	
+		PUB 
+			hub.docker.com
+			google registry
+			ECR
+		PVT
+			artifactory
+			nexus
+			registry
+
+Container
+
+HUMAN -- 
+	Docker run image
+	---------------------
+	docker client --> docker server --Check LOCAL Registry(Do i have that image?
+				NO - Download from hub to LR			
+				YES - 
+				ContainerD ----> Kernal
+						- 1 net
+						- 1 mnt using docker image
+						- 1 user
+						- 1 pid
+						-------------------
+						ATTACH USER with MNT + PID + NET
+						---------------------------------
+						Container
+'
+
+
+
+	
+
+
+
+
+
+
+Docker Workflow- Refer above
+===============================================
+Assignment
+---------------------------
+Write a your notes for defining a docker, container, architecture and components and workflow in 1 page.
+
+================================================
+================================================
+How to install Docker?
+
+Container LifeCycle
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
