@@ -208,30 +208,172 @@ HUMAN --
 
 Docker Workflow- Refer above
 ===============================================
-Assignment
+Assignment for Docker Day 1
 ---------------------------
 Write a your notes for defining a docker, container, architecture and components and workflow in 1 page.
 
 ================================================
 ================================================
 How to install Docker?
+- 13.233.115.106
+https://devopsschool.com/tutorial/docker/install-config/docker-install-commuityedition-centos-rhel.html
+
+    1  clear
+    2  sudo yum install -y yum-utils device-mapper-persistent-data lvm2
+    3  clear
+    4  sudo yum-config-manager --add-repo https://download.docker.com/linux/centos/docker-ce.repo
+    5  sudo yum install –y https://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm
+    6  sudo yum-config-manager --enable rhui-REGION-rhel-server-extras
+    7  sudo yum install -y docker-ce
+    8  docker -v
+    9  clear
+   10  clearsudo systemctl enable docker
+   11  sudo systemctl enable docker
+   12  sudo systemctl start docker
+   13  clear
+   14  docker
+   15  clear
+   16  which docker
+   17  which dockerd
+   18  which containerd
+   19  ps -eaf | grep docker
+   20  ps -eaf | grep containerd
+   21  docker version
+   22  clear
+   23  docker infdo
+   24  docker info
+   25  clear
+   26  clear
+   27  history
+
+VMS LifeCycle
+--------------------------------
+create -> start -> stop -> start -> restart -> pause -> unpause -> kill -> remove
 
 Container LifeCycle
+--------------------------------
+create -> start -> stop -> start -> restart -> pause -> unpause -> kill -> remove
+https://www.devopsschool.com/blog/lifecycle-of-docker-containers/
+
+apache
+--------------------
+rootfs + user + apache app
+  34  clear
+   35  docker images
+   36  docker ps
+   37  docker ps -a
+   38  docker pull httpd
+   39  docker images
+   40  clear
+   41  docker create httpd
+   42  docker ps
+   43  docker ps -a
+   44  docker create --name=raju1 httpd
+   45  docker ps -a
+   46  docker create --name=raju2 httpd
+   47  docker ps -a
+   48  docker start raju1
+   49  docker ps -a
+   50  docker start 9e557c2264d8
+   51  docker ps -a
+   52  clear
+   53  docker ps -a
+   54  docker stop raju1
+   55  docker ps -a
+   56  docker start raju1
+   57  docker ps -a
+   58  docker restart raju1
+   59  docker ps -a
+   60  docker pause raju1
+   61  docker ps -a
+   62  clear
+   63  docker unpause raju1
+   64  docker ps -a
+   65  docker kill raju1
+   66  docker ps -a
+   67  docker rm raju1
+   68  docker ps -a
+============================================
+PROOF
+	Each container
+			1 MNT		DONE
+			1 USER		DONE
+			1 NET		DONE
+			1 PID MAPs
+  72  docker ps
+   73  docker ps -a
+   74  clear
+   75  docker ps
+   76  docker inspect 9e557c2264d8
+   77  clear
+   78  docker inspect 9e557c2264d8 | grep -i ip
+   79  docker ps -a
+   80  docker start raju2
+   81  docker inspect raju2 | grep -i ip
+   82  curl http://172.17.0.2
+   83  curl http://172.17.0.3
+   84  curl http://172.17.0.4
+   85  clear
+   86  ls
+   87  clear
+   88  df -kh
+   89  docker ps
+   90  docker stop raju1
+   91  docker stop raju2
+   92  docker ps
+   93  clear
+   94  df -kh
+   95  docker start raju2
+   96  df -kh
+   97  clear
+   98  ls /var/lib/docker/overlay2/7b07df6504a20c7c0739cdc024ddef18bc5f5b78dce4b6d759f5969430d4ad21/merged
+   99  ls /
+  100  ls /var/lib/docker/overlay2/7b07df6504a20c7c0739cdc024ddef18bc5f5b78dce4b6d759f5969430d4ad21/merged
+  101  clear
+  102  df -kh
+  103  docker exec raju2 df -kh
+  104  clear
+  105  history
+  106  clear
+  107  df -kh
+  108  docker exec raju2 df -kh
+  109  clear
+  110  ps
+  111  ps -eaf | grep 8796
+  112  ps -eaf | grep 8794
+  113  ps -eaf | grep 8771
+  114  ps -eaf | grep 8770
+  115  ps -eaf | grep 8289
+  116  ps -eaf | grep 1446
+  117  ps -eaf
+  118  clear
+  119  docker ps
+  120  clear
+  121  ps -eaf | grep containerd
+  122  clear
+  123  docker ps
+  124  docker exec f63e7d0b6a2a ps -eaf
+  125  docker exec f63e7d0b6a2a more
+  126  clear
+  127  docker exec f63e7d0b6a2a more /etc/passwd
+  128  clear
+  129  docker run -itd ubuntu
+  130  docker ps
+  131  docker exec a515d0fcce3f ps -eaf
+  132  clear
+  133  docker exec a515d0fcce3f ps -eaf
+  134  ps -eaf
+=============================================================================
+Assignment 
+---------------------------------------
+What is diff between docker stop and docker kill?
+What is diff between docker pause and docker unpause?
 
 
 
+- 13.233.115.106
+centos
+centos123
 
-
-
-
-
-
-
-
-
-
-
-
-
-
+[sudo -s] To become a root
 
