@@ -500,38 +500,84 @@ attach
   212  docker attach 8ced223eed41
 
 
----> Access a container from outside Network
+
 
 
 How to come out of the container without EXIT?
 control + p+ q
 
+=========================================
+
+
+https://www.devopsschool.com/blog/the-docker-command-line-complete-referenece/
+
+
+  228  docker ps
+  229  ls
+  230  docker cp test.py e98879e353af:/tmp
+  231  docker exec e98879e353af ls /tmp
+  232  ls
+  233  rm -rf test
+  234  rm -rf test.py
+  235  clear
+  236  ls
+  237  docker cp e98879e353af:/tmp/test.py .
+
+
+diff
+	ADDED
+	DELETED
+	CHANGED
+
+  240  clear
+  241  docker ps
+  242  docker attach e98879e353af
+  243  clear
+  244  docker ps
+  245  docker diff e98879e353af
+  246  history
+cdocker
+
+
+ 248  docker ps
+  249  docker rename practical_volhard raju
+  250  docker ps
 
 
 
 
 
+---> Access a container from outside Network
+
+$ docker run -d -p 80:80 httpd
+
+80:80 = HOST-PORT:Container-port
 
 
+$ docker run -d -p 81:80 httpd
+$ docker run -d -p 82:80 httpd
 
+  253  docker run -d httpd
+  254  docker ps
+  255  docker inspect 62345f3070c4
+  256  clear
+  257  curl http://172.17.0.3
+  258  clear
+  259  docker run -d -p 80:80 http
+  260  clear
+  261  docker run -d -p 80:80 httpd
+  262  docker ps
+  263  docker run -d -p 81:80 httpd
+  264  docker ps
 
+ 266  clear
+  267  docker ps
+  268  docker port 32d3e650bef8
+  269  docker port 62345f3070c4
 
+ASSIGNMENT
+-------------------
+update	Update configuration of one or more containers
+wait	Block until one or more containers stop, then print their exit codes
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-s
 
