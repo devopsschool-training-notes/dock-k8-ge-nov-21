@@ -259,13 +259,240 @@ https://docs.docker.com/develop/develop-images/multistage-build/
 
 dcoekr run -d -p 8080:8080 -p 55000:50000 jenkins
 
+========================================================
+Docker Volume
+---------------------------------------
+https://www.devopsschool.com/blog/understand-docker-volume-from-beginner-to-deep-dive-level/
+
+How to have data pers in container
+-- Docker volume
+
+Types 
+- volume	/var/lib/docker/volumes
+- mountfs	any place in host server
+- tempfs	memory
+
+
+ 1162  ca /var/lib/docker/
+ 1163  cd /var/lib/docker/volumes/
+ 1164  pwd
+ 1165  clear
+ 1166  cd
+ 1167  ls
+ 1168  cd -
+ 1169  clear
+ 1170  ls
+ 1171  docker volume
+ 1172  docker volume  ls
+ 1173  pwd
+ 1174  ls
+ 1175  clear
+ 1176  ls
+ 1177  docker volume ls
+ 1178  docker volume
+ 1179  docker volume prune
+ 1180  clear
+ 1181  ls
+ 1182  du -sh
+ 1183  docker volume
+ 1184  docker volume create
+ 1185  ls
+ 1186  docker volume create dev
+ 1187  docker volume create qa
+ 1188  clear
+ 1189  ls
+ 1190  docker volume inspect dev
+ 1191  docker volume rm dev
+ 1192  clear
+ 1193  ls
+ 1194  docker run -itd --name=raju5 -v qa:/opt/ramukaka ubuntu
+ 1195  docker exec raju5 df -kh
+ 1196  docker exec raju5 touch /opt/ramukaka/rajesh1.txt
+ 1197  ls qa/_data/
+ 1198  docker exec raju5 touch /opt/ramukaka/rajesh2.txt
+ 1199  ls qa/_data/
+ 1200  touch qa/_data/rajesh3.txt
+ 1201  docker exec raju5 touch ls /opt/ramukaka
+ 1202  docker exec raju5 ls /opt/ramukaka
+ 1203  docker volume create dev
+ 1204  docker run -itd --name=raju5 -v qa:/opt/ramukaka -v dev:/tmp/dd ubuntu
+ 1205  clear
+ 1206  docker run -itd --name=raju6 -v qa:/opt/ramukaka -v dev:/tmp/dd ubuntu
+ 1207  docker exec raju6 ls /
+ 1208  docker exec raju6 ls /tmp
+ 1209  docker exec raju6 ls /opt
+ 1210  docker exec raju6 ls /opt/ramukaka
+ 1211  docker stop raju5 raju6
+ 1212  docker rm raju5 raju6
+ 1213  ls
+ 1214  clear
+ 1215  ls
+ 1216  ls dev/_data/
+ 1217  ls qa/_data/
 
 
 
 
+ 1226  pwd
+ 1227  docke run -itd --name=raju7 -v /opt/bkp:/opt/ramu ubuntu
+ 1228  docker run -itd --name=raju7 -v /opt/bkp:/opt/ramu ubuntu
+ 1229  docker exec raju7 ls /
+ 1230  docker exec raju7 ls /opt
+ 1231  docker exec raju7 touch /opt/ramu/rrrrr
+ 1232  ls
+ 1233  touch dsfsdf
+ 1234  docker exec raju7 ls /opt
+ 1235  docker exec raju7 ls /opt/rau
+ 1236  docker exec raju7 ls /opt/ra,mu
+ 1237  docker exec raju7 ls /opt/ramu
 
 
 
+[root@ip-172-31-5-96 bkp]# docker help run
+
+Usage:  docker run [OPTIONS] IMAGE [COMMAND] [ARG...]
+
+Run a command in a new container
+
+Options:
+      --add-host list                  Add a custom host-to-IP mapping (host:ip)
+  -a, --attach list                    Attach to STDIN, STDOUT or STDERR
+      --blkio-weight uint16            Block IO (relative weight), between 10 and 1000, or 0 to disable (default 0)
+      --blkio-weight-device list       Block IO weight (relative device weight) (default [])
+      --cap-add list                   Add Linux capabilities
+      --cap-drop list                  Drop Linux capabilities
+      --cgroup-parent string           Optional parent cgroup for the container
+      --cgroupns string                Cgroup namespace to use (host|private)
+                                       'host':    Run the container in the Docker host's cgroup namespace
+                                       'private': Run the container in its own private cgroup namespace
+                                       '':        Use the cgroup namespace as configured by the
+                                                  default-cgroupns-mode option on the daemon (default)
+      --cidfile string                 Write the container ID to the file
+      --cpu-period int                 Limit CPU CFS (Completely Fair Scheduler) period
+      --cpu-quota int                  Limit CPU CFS (Completely Fair Scheduler) quota
+      --cpu-rt-period int              Limit CPU real-time period in microseconds
+      --cpu-rt-runtime int             Limit CPU real-time runtime in microseconds
+  -c, --cpu-shares int                 CPU shares (relative weight)
+      --cpus decimal                   Number of CPUs
+      --cpuset-cpus string             CPUs in which to allow execution (0-3, 0,1)
+      --cpuset-mems string             MEMs in which to allow execution (0-3, 0,1)
+  -d, --detach                         Run container in background and print container ID
+      --detach-keys string             Override the key sequence for detaching a container
+      --device list                    Add a host device to the container
+      --device-cgroup-rule list        Add a rule to the cgroup allowed devices list
+      --device-read-bps list           Limit read rate (bytes per second) from a device (default [])
+      --device-read-iops list          Limit read rate (IO per second) from a device (default [])
+      --device-write-bps list          Limit write rate (bytes per second) to a device (default [])
+      --device-write-iops list         Limit write rate (IO per second) to a device (default [])
+      --disable-content-trust          Skip image verification (default true)
+      --dns list                       Set custom DNS servers
+      --dns-option list                Set DNS options
+      --dns-search list                Set custom DNS search domains
+      --domainname string              Container NIS domain name
+      --entrypoint string              Overwrite the default ENTRYPOINT of the image
+  -e, --env list                       Set environment variables
+      --env-file list                  Read in a file of environment variables
+      --expose list                    Expose a port or a range of ports
+      --gpus gpu-request               GPU devices to add to the container ('all' to pass all GPUs)
+      --group-add list                 Add additional groups to join
+      --health-cmd string              Command to run to check health
+      --health-interval duration       Time between running the check (ms|s|m|h) (default 0s)
+      --health-retries int             Consecutive failures needed to report unhealthy
+      --health-start-period duration   Start period for the container to initialize before starting health-retries
+                                       countdown (ms|s|m|h) (default 0s)
+      --health-timeout duration        Maximum time to allow one check to run (ms|s|m|h) (default 0s)
+      --help                           Print usage
+  -h, --hostname string                Container host name
+      --init                           Run an init inside the container that forwards signals and reaps processes
+  -i, --interactive                    Keep STDIN open even if not attached
+      --ip string                      IPv4 address (e.g., 172.30.100.104)
+      --ip6 string                     IPv6 address (e.g., 2001:db8::33)
+      --ipc string                     IPC mode to use
+      --isolation string               Container isolation technology
+      --kernel-memory bytes            Kernel memory limit
+  -l, --label list                     Set meta data on a container
+      --label-file list                Read in a line delimited file of labels
+      --link list                      Add link to another container
+      --link-local-ip list             Container IPv4/IPv6 link-local addresses
+      --log-driver string              Logging driver for the container
+      --log-opt list                   Log driver options
+      --mac-address string             Container MAC address (e.g., 92:d0:c6:0a:29:33)
+  -m, --memory bytes                   Memory limit
+      --memory-reservation bytes       Memory soft limit
+      --memory-swap bytes              Swap limit equal to memory plus swap: '-1' to enable unlimited swap
+      --memory-swappiness int          Tune container memory swappiness (0 to 100) (default -1)
+      --mount mount                    Attach a filesystem mount to the container
+      --name string                    Assign a name to the container
+      --network network                Connect a container to a network
+      --network-alias list             Add network-scoped alias for the container
+      --no-healthcheck                 Disable any container-specified HEALTHCHECK
+      --oom-kill-disable               Disable OOM Killer
+      --oom-score-adj int              Tune host's OOM preferences (-1000 to 1000)
+      --pid string                     PID namespace to use
+      --pids-limit int                 Tune container pids limit (set -1 for unlimited)
+      --platform string                Set platform if server is multi-platform capable
+      --privileged                     Give extended privileges to this container
+  -p, --publish list                   Publish a container's port(s) to the host
+  -P, --publish-all                    Publish all exposed ports to random ports
+      --pull string                    Pull image before running ("always"|"missing"|"never") (default "missing")
+      --read-only                      Mount the container's root filesystem as read only
+      --restart string                 Restart policy to apply when a container exits (default "no")
+      --rm                             Automatically remove the container when it exits
+      --runtime string                 Runtime to use for this container
+      --security-opt list              Security Options
+      --shm-size bytes                 Size of /dev/shm
+      --sig-proxy                      Proxy received signals to the process (default true)
+      --stop-signal string             Signal to stop a container (default "SIGTERM")
+      --stop-timeout int               Timeout (in seconds) to stop a container
+      --storage-opt list               Storage driver options for the container
+      --sysctl map                     Sysctl options (default map[])
+      --tmpfs list                     Mount a tmpfs directory
+  -t, --tty                            Allocate a pseudo-TTY
+      --ulimit ulimit                  Ulimit options (default [])
+  -u, --user string                    Username or UID (format: <name|uid>[:<group|gid>])
+      --userns string                  User namespace to use
+      --uts string                     UTS namespace to use
+  -v, --volume list                    Bind mount a volume
+      --volume-driver string           Optional volume driver for the container
+      --volumes-from list              Mount volumes from the specified container(s)
+  -w, --workdir string                 Working directory inside the container
+[root@ip-172-31-5-96 bkp]#
+
+1240  docker help run
+ 1241  clear
+ 1242  docker ps
+ 1243  docker logs d93c4b44c7d5
+ 1244  docker attach d93c4b44c7d5
+ 1245  c
+ 1246  clear
+ 1247  docker logs d93c4b44c7d5
+ 1248  docker run -d httpd
+ 1249  docker ps
+ 1250  docker inspect dd8ef2c74b22
+ 1251  curl http://172.17.0.4
+ 1252  curl http://172.17.0.4
+ 1253  curl http://172.17.0.4
+ 1254  curl http://172.17.0.4
+ 1255  clear
+ 1256  docker ps
+ 1257  docker logs dd8ef2c74b22
+ 1258  clear
+ 1259  docker stats
+ 1260  docker stats raju7
+ 1261  docker ps
+ 1262  ps -eaf | grep dockerd
+ 1263  ckear
+ 1264  c,ear
+ 1265  clear
+ 1266  ps -eaf | grep containerd
+ 1267  docker top raju7
+ 1268  clear
+ 1269  docker events
+
+docker pull http://
+-----------------------
+
+Docker config ==art
 
 
 
