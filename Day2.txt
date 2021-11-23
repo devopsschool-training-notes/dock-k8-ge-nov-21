@@ -92,3 +92,119 @@ RFS + UFS + APPFS
   957  docker start b3f47c6b5236
   958  find . -name ramukaka.txt
   959  history
+========================================================
+Base - Ubuntu
+---------git - apache - mysql - mongodb
+=====================================
+ 2 Method
+===========================
+Method - 1 - Manual -- 1 Layer every time 
+- Existing container
+
+  962  docker kill $(docker ps -q)
+  963  docker rm -f $(docker ps -a -q)
+  964  clear
+  965  docker
+  966  clear
+  967  docker run -itd ubuntu
+  968  docker ps
+  969  docker attach 108b27be953b
+  970  git
+  971  docker attach 108b27be953b
+  972  ls
+  973  cd
+  974  clear
+  975  ls
+  976  vi index.html
+  977  ls
+  978  docker ps
+  979  history
+  980  clear
+  981  ls
+  982  docker ps
+  983  docker cp index.html 108b27be953b:/tmp
+  984  docker attach 108b27be953b
+  985  clear
+  986  docker ps
+  987  docker exec 108b27be953b git
+  988  clear
+  989  docker exec 108b27be953b which apache2
+  990  docker exec 108b27be953b mysql
+  991  docker exec 108b27be953b mongo
+  992  clear
+  993  docker ps
+  994  docker images
+  995  docker commit -m"ub-up-git-mysql-mog" -a"Rajesh Kumar" 108b27be953b ub-up-git-mysql-mog
+  996  docker images
+  997  docker history ubuntu
+  998  docker history ub-up-git-mysql-mog
+  999  clear
+ 1000  docker images
+ 1001  docker run -itd --name=ramu1 ub-up-git-mysql-mog
+ 1002  docker exec ramu1 git
+ 1003  clear
+ 1004  docker attach ramu1
+-------------------------------
+How to share an images?
+-----------------------
+- tar ball
+
+ 1015  docker ps -a
+ 1016  docker stop 3e7211e5d9f1
+ 1017  docker rm 3e7211e5d9f1
+ 1018  clear
+ 1019  docker images
+ 1020  docker rmi ub-up-git-mysql-mog
+ 1021  clear
+ 1022  docker images
+ 1023  ls
+ 1024  docker loan -i ub-up-git-mysql-mog.tar
+ 1025  clear
+ 1026  docker load -i ub-up-git-mysql-mog.tar
+ 1027  history
+
+
+
+- hub.docker.com
+- Step 1 - Register at hub.docker.com
+- Step 2 - Login
+- Step 3 - Create a repo at hub
+- Step 4 - MAKE sure a LR name MUST match with HUB repo name
+$ docker tag raju3 devopsschools/23-nov-202
+---------
+useradd <raj>
+usermod -aG wheel raj
+su <raj>
+---------
+- Step 5 - docker login
+- Step 6 - docker push devopsschools/23-nov-202
+
+
+
+
+
+Method - 2 - Automated -- All Layer @ one go
+- Dockerfile
+
+
+
+Dcoker volume
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
