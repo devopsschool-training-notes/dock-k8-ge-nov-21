@@ -185,15 +185,79 @@ su <raj>
 
 Method - 2 - Automated -- All Layer @ one go
 - Dockerfile
+===============================================
+Rules of Dockerfile
+- DATA layer - /var/lib/docker/overlay2 -- e.g somefiles
+- Meta Layer - /var/lib/docker/image   -- env, runtime, network
+
+- EACH LINE is Creating ONE LAYER
+- Layer is created from a container from the previous line's layer.
+
+--------------
+FROM ubuntu
+MAINTAINER Rajesh kumar < rajesh@devopsschool.com>
+RUN apt-get update && apt-get install git -y
+RUN apt-get install apache2 -y
+RUN apt-get install mysql-server -y
+RUN apt-get install mongodb -y
+COPY index.html /tmp
+ENV JAVA_HOME=/tmp/java
+
+
+FROM	- Base Image
+RUN	- Run a command in container
+ADD	- COPy and EXTRACT
+COPY	- COPY
+EXTRACT - EXTRACT
+EXPOSE 	- SET INFORAMTIONAL PORT
+USER	- user to run container
+VOLUME
+WORKDIR	- user default user home
+ENV	- set a cont env
+ARG	- set arg for dockerfile 
+
+[root@ip-172-31-5-96 rajesh]# history | grep build
+ 1102  docker build -t rajesh .
+ 1105  docker build -t rajesh .
+ 1108  docker build -t rajesh .
+
+$ docker build -t rajesh .
+
+$ docker build -f filename -t rajesh .
+
+-----------------------------------------
+CMD
+ENRTYPOINT
+==================================
+
+How to set PID1?
+-----------------------
+CMD
+ENRTYPOINT
+-----------------------------------
+- CMD can be replaced
+- ENTRYPOINT CAN NOT BE replaced
+
+============================
+2 CMD
+2 ENTRYPOINT
+1 CMD 1 ENTRYPOINT
+https://devopsschool.com/tutorial/docker/dockerfile/dockerfile-example-sample-lab.html
+
+Mode of Execution
+---------------------------
+Exec mode [[[ /bin/ls	/bin/python
+shell  [[[ ls python
+
 
 
 
 Dcoker volume
 
+https://docs.docker.com/develop/develop-images/multistage-build/
 
 
-
-
+dcoekr run -d -p 8080:8080 -p 55000:50000 jenkins
 
 
 
