@@ -1,0 +1,54 @@
+Asignment   - 20 mins
+Write a followig things.
+
+What is Kubernetes, define their architecture and its components. - 30 lines
+What is pod. - 20 lines
+===============================================
+Master		13.127.30.75	==== WORKSTATION
+- API server 		-> POD - Container -> Docker Image --> Google Registry
+- Etcd			-> POD - Container -> Docker Image --> Google Registry
+- Controller mgmr	-> POD - Container -> Docker Image --> Google Registry
+- Schedular		-> POD - Container -> Docker Image --> Google Registry
+- Kube Proxy 		-> POD - Container -> Docker Image --> Google Registry
+
+- Kubelet
+- kubectl 
+- Docker
+- kubeadm init
+
+Worker		65.1.3.165
+- Kubelet
+- Docker
+- kubectl 
+- kubeadm join
+- Kube Proxy		-> POD - Container -> Docker Image --> Google Registry
+
+Workstation
+- kubectl
+
+https://www.devopsschool.com/blog/setting-up-kubernetes-clusters-using-kubeadm-manual-way-in-rhel-7-centos7/ 
+
+
+=============================================================
+To start using your cluster, you need to run the following as a regular user:
+
+  mkdir -p $HOME/.kube
+  sudo cp -i /etc/kubernetes/admin.conf $HOME/.kube/config
+  sudo chown $(id -u):$(id -g) $HOME/.kube/config
+
+Alternatively, if you are the root user, you can run:
+
+  export KUBECONFIG=/etc/kubernetes/admin.conf
+
+=============================================================
+
+You should now deploy a pod network to the cluster.
+Run "kubectl apply -f [podnetwork].yaml" with one of the options listed at:
+  https://kubernetes.io/docs/concepts/cluster-administration/addons/
+
+=============================================================
+Then you can join any number of worker nodes by running the following on each as root:
+
+kubeadm join 172.31.3.14:6443 --token zc2tqs.a10lurmfv4b2h72c \
+        --discovery-token-ca-cert-hash sha256:29df96ec6a5d6dc22985d71ec1b3d535bd9b166480b665a17cbf99510d58d8aa
+[root@ip-172-31-3-14 centos]#
