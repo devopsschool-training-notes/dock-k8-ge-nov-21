@@ -321,6 +321,78 @@ HOST:Container
   181  kubectl auth reconcile
   182  kubectl auth reconcile  -f
 
+==================================================
+Replication Controller
+-------------------------------
+Replication  - 1 POD can scale as many
+Controller - Number of desire pod ==== Always === Num of Existing pod
+https://www.devopsschool.com/blog/kubernetes-replicationcontroller-example-programs/
+
+
+
+
+apiVersion: v1
+kind: ReplicationController
+metadata:
+  # Unique key of the ReplicationController instance
+  name: replicationcontroller-example
+spec:
+  # 3 Pods should exist at all times.
+  replicas: 3
+  template:
+    metadata:
+      labels:
+        app: nginx
+    spec:
+      containers:
+      # Run the nginx image
+      - name: nginx
+        image: scmgalaxy/nginx-devopsschoolv1
+
+
+
+kubectl scale --replicas=1 rc/replicationcontroller-example -n=rajesh
+kubectl scale --replicas=3 rc/replicationcontroller-example -n=rajesh
+
+  189  kubectl create -f
+  190  clear
+  191  kubectl create -h
+  192  clear
+  193  ls
+  194  vi rc.yaml
+  195  kubectl get rc -n=rajesh
+  196  kubectl create -f rc.yaml -n=rajesh
+  197  kubectl get rc -n=rajesh
+  198  kubectl get pods -n=rajesh
+  199  kubectl delete pod rajesh-pod1 ramav-pod1 -n=rajesh
+  200  clear
+  201  kubectl get pods -n=rajesh
+  202  kubectl get rc -n=rajesh
+  203  kubectl edit rc replicationcontroller-example  -n=rajesh
+  204  kubectl get rc -n=rajesh
+  205  kubectl get pods -n=rajesh
+  206  kubectl edit rc replicationcontroller-example  -n=rajesh
+  207  kubectl get pods -n=rajesh
+  208  clear
+  209  kubectl get pods -n=rajesh
+  210  vi rc.yaml
+  211  kubectl apply  -f rc.yaml -n=rajesh
+  212  kubectl get pods -n=rajesh
+  213  clear
+  214  kubectl scale -h
+  215  clear
+  216  kubectl scale --replicas=1 rc/replicationcontroller-example -n=rajesh
+  217  kubectl get pods -n=rajesh
+  218  kubectl scale --replicas=3 rc/replicationcontroller-example -n=rajesh
+  219  kubectl get pods -n=rajesh
+  220  clear
+  221  kubectl get pods -n=rajesh
+  222  kubectl delete pod replicationcontroller-example-wxjbb replicationcontroller-example-pqcxb -n=rajesh
+  223  kubectl get pods -n=rajesh
+
+
+
+
 
 
 
