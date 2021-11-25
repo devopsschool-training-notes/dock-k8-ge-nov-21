@@ -390,6 +390,59 @@ kubectl scale --replicas=3 rc/replicationcontroller-example -n=rajesh
   222  kubectl delete pod replicationcontroller-example-wxjbb replicationcontroller-example-pqcxb -n=rajesh
   223  kubectl get pods -n=rajesh
 
+===============================================================================
+Deployment
+--------------------------------------
+Replication + Controller
+--------------------------
+	RS
+	ReplicaSets
+
+Versioning
+Rollout
+Rollback
+
+kubectl create deployment my-dep --image=scmgalaxy/nginx-devopsschoolv1 --replicas=3 -n=rajesh
+
+
+
+
+kubectl scale --replicas=5 deployment/my-dep -n=rajesh
+
+
+
+  226  kubectl create -h
+  227  clear
+  228  kubectl create deployment -h
+  229  clear
+  230  ls
+  231  kubectl get pods -n=rajesh
+  232  kubectl create deployment my-dep --image=scmgalaxy/nginx-devopsschoolv1 --replicas=3 -n=rajesh
+  233  kubectl get pods -n=rajesh
+  234  kubectl get deploy -n=rajesh
+  235  kubectl describe  deploy  my-dep -n=rajesh
+  236  kubectl get rs -n=rajesh
+  237  kubectl edit  deploy  my-dep -n=rajesh
+  238  kubectl get rs -n=rajesh
+  239  kubectl get deploy -n=rajesh
+  240  kubectl scale -h
+  241  clear
+  242  kubectl get deploy -n=rajesh
+  243  kubectl scale --replicas=5 deployment/my-dep -n=rajesh
+  244  kubectl get deploy -n=rajesh
+  245  kubectl scale --replicas=2 deployment/my-dep -n=rajesh
+  246  kubectl get deploy -n=rajesh
+  247  kubectl delete deploy  my-dep -n=rajesh
+  248  kubectl get deploy -n=rajesh
+
+
+
+
+
+
+
+
+
 
 
 
