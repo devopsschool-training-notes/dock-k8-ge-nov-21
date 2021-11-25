@@ -290,15 +290,36 @@ Troubleshooting and Debugging Commands:
   port-forward  Forward one or more local ports to a pod
   cp            Copy files and directories to and from containers
   auth          Inspect authorization
+===================
+ kubectl port-forward --address 0.0.0.0 pod/rajesh-pod1 8888:80 -n=rajesh
 
 
+8888:80 
+HOST:Container
 
-
-
-
-
-
-
+ 160  kubectl port-forward -h
+  161  clear
+  162  ls
+  163  kubectl get pods -n=rajesh
+  164  clear
+  165  kubectl port-forward --address 0.0.0.0 pod/rajesh-pod1 8888:80 -n=rajesh
+  166  kubectl
+  167  clear
+  168  ls
+  169  kubectl get pods -n=rajesh
+  170  kubectl cp pod1.yaml rajesh-pod1:/tmp -n=rajesh
+  171  kubectl exec rajesh-pod1 ls /tmp/
+  172  kubectl exec rajesh-pod1 ls /tmp/ -n=rajesh
+  173  kubectl cp -h
+  174  clear
+  175  ls
+  176  kubectl auth
+  177  kubectl auth can-i create pod
+  178  kubectl auth can-i create ns
+  179  kubectl auth reconcile -h
+  180  clear
+  181  kubectl auth reconcile
+  182  kubectl auth reconcile  -f
 
 
 
