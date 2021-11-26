@@ -268,6 +268,103 @@ kubectl --context=Context1|2|3
  1177  kubectl --context=employee-context run nginx --image=nginx
  1178  kubectl --context=employee-context get svc
  1179  history
+=======================================================
+What is docker compose?
+- Dev tools for creating - troublshooting - running container and images
+
+tool named wit
+
+docker-compose
+		reads what?
+		docker-compose.yaml
+		contains
+	
+-------------
+Service(s)
+
+web
+	build - dockerfile
+	image - imagenmae
+	port 
+	vol
+	net
+	env
+
+app
+	build - dockerfile
+	image - imagenmae
+	port 
+	vol
+	net
+	env
+
+db 
+	build - dockerfile
+	image - imagenmae
+	port 
+	vol
+	net
+	env
+
+
+
+
+------------------------------------------------------
+docker-compose up 
+		stop
+		start
+		logs
+		ps
+docker-compose down
+
+https://www.devopsschool.com/blog/collection-example-of-docker-compose-program/
+
+
+ 403  clear
+  404  ls
+  405  cd
+  406  ls
+  407  sudo curl -L "https://github.com/docker/compose/releases/download/1.29.2/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
+  408  sudo chmod +x /usr/local/bin/docker-compose
+  409  sudo ln -s /usr/local/bin/docker-compose /usr/bin/docker-compose
+  410   docker-compose --version
+  411  cd
+  412  ls
+  413  ls
+  414  vi docker-compose.yaml
+  415  docker-compose ps
+  416* clea
+  417  docker-compose -h
+  418  clear
+  419  ls
+  420  docker-compose up -d
+  421  clear
+  422  docker-compose ps
+  423  docker-compose logs
+  424  clear
+  425  docker-compose stop
+  426  docker-compose ps
+  427  docker-compose start
+  428  docker-compose ps
+  429  docker-compose down
+  430  docker-compose ps
+  431  history
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
