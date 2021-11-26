@@ -184,6 +184,90 @@ https://www.devopsschool.com/blog/persistentvolume-persistentvolumeclaim-volumes
 
 
 
+https://www.devopsschool.com/blog/kubernetes-persistentvolume-and-persistentvolumeclaim-using-nfs-volume-types/
+
+
+==============================================
+
+https://www.devopsschool.com/blog/understanding-authentication-authorization-in-kubernetes/
+
+=====================================
+
+How We connect to API server?
+---------------------------------
+kubectl
+	config
+	$USER_HOME/.kube/config {Default}
+	CURR_LOC/.kube/config
+	export KUBECONFIG=/etc/kubernetes/admin.conf
+
+config contains
+- YAML
+
+Clustor(S)
+- Clustor1 = http://api-add:6443
+- Clustor2 = http://api-add:6443
+- Clustor3 = http://api-add:6443
+
+User(s)
+- Usr1 - key + cert
+- Usr2 - key + cert
+- Usr3 - key + cert
+
+Context(S)
+- Context1 = Clustor1 + Usr2 
+- Context2 = Clustor2 + Usr1 
+- Context3 = Clustor3 + Usr3 
+
+curr-context: Clustor2
+
+kubectl --context=Context1|2|3
+
+
+ 1136  more $HOME/.kube/config
+ 1137  clear
+ 1138  kubectl config
+ 1139  clear
+ 1140  kubectl config view
+ 1141  clear
+ 1142  ls
+ 1143  pwd
+ 1144  openssl genrsa -out employee.key 2048
+ 1145  ls
+ 1146  openssl req -new -key employee.key -out employee.csr -subj "/CN=employee/O=bitnami"
+ 1147  ls
+ 1148  openssl x509 -req -in employee.csr -CA /etc/kubernetes/pki/ca.crt -CAkey /etc/kubernetes/pki/ca.key -CAcreateserial -out employee.crt -days 500
+ 1149  sudo openssl x509 -req -in employee.csr -CA /etc/kubernetes/pki/ca.crt -CAkey /etc/kubernetes/pki/ca.key -CAcreateserial -out employee.crt -days 500
+ 1150  clear
+ 1151  ls
+ 1152  pwd
+ 1153  kubectl config set-credentials employee --client-certificate=/home/centos/rajesh/employee.crt  --client-key=/home/centos/rajesh/employee.key
+ 1154  kubectl config view
+ 1155  clear
+ 1156  kubectl config set-context employee-context --cluster=kubernetes --namespace=office --user=employee
+ 1157  kubectl config view
+ 1158  clear
+ 1159  kubectl create namespace office
+ 1160  kubectl --context=employee-context get pods
+ 1161  clear
+ 1162  ls
+ 1163  kubectl get roles
+ 1164  kubectl get roles -n=rajesh
+ 1165  kubectl get ns
+ 1166  clear
+ 1167  ls
+ 1168  vi role.yaml
+ 1169  kubectl apply -f role.yaml
+ 1170  vi role.yaml
+ 1171  kubectl apply -f role.yaml
+ 1172  kubectl get roles -n=office
+ 1173  vi rb.yaml
+ 1174  kubectl apply -f rb.yaml
+ 1175  kubectl get rolebinding -n=office
+ 1176  clear
+ 1177  kubectl --context=employee-context run nginx --image=nginx
+ 1178  kubectl --context=employee-context get svc
+ 1179  history
 
 
 
