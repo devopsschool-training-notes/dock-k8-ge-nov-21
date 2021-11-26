@@ -76,6 +76,115 @@ kubectl expose deploy my-dep --port=80 --target-port=80 -n=rajesh
  1098  kubectl describe svc my-dep -n=rajesh
  1099  clear
  1100  curl http://10.103.143.91
+===========================================================================
+
+Why We need Kubernetes Storage?
+--------------------------------
+We have PODs which is temporary.
+---------------------------------
+How to come Data of the POD - Persitent?
+-------------------------------------
+Kubernetes Volume
+------------------------------
+Types of Kubernetes Volume
+------------------------------------
+Technology 	Options			Volume Driver in kubernetes
+-----------------------------------------
+Block Storage
+		Node Storage		hostpath
+		EBS			
+		Azure Disk			
+
+File/Network Storage
+		NFS			nfs
+		EFS
+
+Object Storage 
+		S3
+		Git
+
+
+PersistentVolume types are implemented as plugins. Kubernetes currently supports the following plugins:
+
+awsElasticBlockStore - AWS Elastic Block Store (EBS)
+azureDisk - Azure Disk
+azureFile - Azure File
+cephfs - CephFS volume
+csi - Container Storage Interface (CSI)
+fc - Fibre Channel (FC) storage
+flexVolume - FlexVolume
+gcePersistentDisk - GCE Persistent Disk
+glusterfs - Glusterfs volume
+hostPath - HostPath volume (for single node testing only; WILL NOT WORK in a multi-node cluster; consider using local volume instead)
+iscsi - iSCSI (SCSI over IP) storage
+local - local storage devices mounted on nodes.
+nfs - Network File System (NFS) storage
+portworxVolume - Portworx volume
+rbd - Rados Block Device (RBD) volume
+vsphereVolume - vSphere VMDK volume
+The following types of PersistentVolume are deprecated. This means that support is still available but will be removed in a future Kubernetes release.
+
+cinder - Cinder (OpenStack block storage) (deprecated in v1.18)
+flocker - Flocker storage (deprecated in v1.22)
+quobyte - Quobyte volume (deprecated in v1.22)
+storageos - StorageOS volume (deprecated in v1.22)
+Older versions of Kubernetes also supported the following in-tree PersistentVolume types:
+
+photonPersistentDisk - Photon controller persistent disk. (not available after v1.15)
+scaleIO - ScaleIO volume (not available after v1.21)
+
+
+========================================================
+Admin of K8s AKA Admin of AWS
+----------------
+He would POOL of Storage
+- Create pool of PV(S) (a volume which would be exist even pOD is gone)
+
+
+User of K8s AKA Me as user of AWS
+-------------------
+He would use ONE of the pool of Storage
+- PVC - Claim a 1 PV 
+- Attached to POD
+- Mount inside a container
+
+https://www.devopsschool.com/blog/persistentvolume-persistentvolumeclaim-volumes-using-hostpath/
+
+
+
+ 1107  vi pv1.yaml
+ 1108  vi pv2.yaml
+ 1109  kubectl get pv
+ 1110  kubectl apply -f pv1.yaml
+ 1111  kubectl apply -f pv2.yaml
+ 1112  kubectl get pv
+ 1113  vi pvc1.yaml
+ 1114  kubectl get pvc -n=rajesh
+ 1115  kubectl apply -f pvc1.yaml -n=rajesh
+ 1116  kubectl get pvc -n=rajesh
+ 1117  kubectl get pv
+ 1118  vi pvc1.yaml
+ 1119  kubectl apply -f pvc1.yaml -n=rajesh
+ 1120  kubectl get pv
+ 1121  kubectl get pvc -n=rajesh
+ 1122  vi pod111.yaml
+ 1123  kubectl apply -f pod111.yaml -n=rajesh
+ 1124  kubectl get pods -n=rajesh
+ 1125  kubectl exec task-pv-pod touch /usr/share/nginx/html/index.html -n=rajesh
+ 1126  kubectl exec task-pv-pod ls /usr/share/nginx/html
+ 1127  kubectl exec task-pv-pod ls /usr/share/nginx/html -n=rajesh
+ 1128  clear
+ 1129  ls
+ 1130  kubectl delete -f pod111.yaml -n=rajesh
+ 1131  kubectl apply -f pod111.yaml -n=rajesh
+ 1132  kubectl exec task-pv-pod ls /usr/share/nginx/html -n=rajesh
+
+
+
+
+
+
+
 
 
 
