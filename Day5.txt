@@ -46,3 +46,41 @@
  1064  kubectl apply -f pod2.yaml -n=rajesh
  1065  clear
  1066  watch curl http://10.99.110.185:5678
+===================================
+
+ 1073  clear
+ 1074  kubectl create service nodeport -h
+ 1075  clear
+ 1076  kubectl create service nodeport my-ns --tcp=5678:80 -n=rajesh
+ 1077  kubectl get pods -n=rajesh --show-labels;kubectl get svc -n=rajesh --show-labels;kubectl describe svc my-ns -n=rajesh
+ 1078  kubectl edit svc my-ns -n=rajesh
+ 1079  clear
+ 1080  kubectl get pods -n=rajesh --show-labels;kubectl get svc -n=rajesh --show-labels;kubectl describe svc my-ns -n=rajesh
+ 1081  watch curl http://10.98.204.118:5678
+ 1082  clear
+ 1083  kubectl create service loadbalancer my-lb --tcp=5678:80 -n=rajesh
+ 1084  kubectl get pods -n=rajesh --show-labels;kubectl get svc -n=rajesh --show-labels;kubectl describe svc my-ns -n=rajesh
+======================================
+
+kubectl create deployment my-dep --image=scmgalaxy/nginx-devopsschoolv1 --replicas=5 -n=rajesh
+
+kubectl expose deploy my-dep --port=80 --target-port=80 -n=rajesh
+
+ 1091  clear
+ 1092  kubectl expose -h
+ 1093  clear
+ 1094  kubectl create deployment my-dep --image=scmgalaxy/nginx-devopsschoolv1 --replicas=5 -n=rajesh
+ 1095  kubectl get svc -n=rajesh
+ 1096  kubectl expose deploy my-dep --port=80 --target-port=80 -n=rajesh
+ 1097  kubectl get svc -n=rajesh
+ 1098  kubectl describe svc my-dep -n=rajesh
+ 1099  clear
+ 1100  curl http://10.103.143.91
+
+
+
+
+
+
+
+
