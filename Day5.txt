@@ -1,0 +1,48 @@
+ 1019  cp pod1.yaml pod2.yaml
+ 1020  vi pod1.yaml
+ 1021  vi pod2.yaml
+ 1022  clear
+ 1023  ls
+ 1024  kubectl apply -f pod1.yaml -n=rajesh
+ 1025  kubectl apply -f pod2.yaml -n=rajesh
+ 1026  cleaer
+ 1027  clear
+ 1028  kubectl get pods -n=rajesh
+ 1029  kubectl get pods -n=rajesh --show-labesl
+ 1030  kubectl get pods -n=rajesh --show-labels
+ 1031  clear
+ 1032  kubectl get svc -n=rajesh
+ 1033  kubectl get svc
+ 1034  kubectl get svc -n=rajesh
+ 1035  kubectl create -h
+ 1036  clear
+ 1037  kubectl create service -h
+ 1038  kubectl create service clusterip -h
+ 1039  clear
+ 1040  kubectl create service clusterip my-cs --tcp=5678:80
+ 1041  kubectl get svc
+ 1042  kubectl delete svc my-cs
+ 1043  clear
+ 1044  kubectl create service clusterip my-cs --tcp=5678:80 -n=rajesh
+ 1045  kubectl get svc -h
+ 1046  clear
+ 1047  kubectl get svc -n=rajesh
+ 1048  kubectl get svc -n=rajesh --show-labels
+ 1049  kubectl get pods -n=rajesh --show-labels
+ 1050  kubectl get pods -n=rajesh --show-labels;kubectl get svc -n=rajesh --show-labels;kubectl describe svc my-cs -n=rajesh
+ 1051  cleae
+ 1052  clear
+ 1053  kubectl get pods -n=rajesh --show-labels;kubectl get svc -n=rajesh --show-labels;kubectl describe svc my-cs -n=rajesh
+ 1054  kubectl edit svc my-cs -n=rajesh
+ 1055  clear
+ 1056  kubectl get pods -n=rajesh --show-labels;kubectl get svc -n=rajesh --show-labels;kubectl describe svc my-cs -n=rajesh
+ 1057  curl http://10.99.110.185:5678
+ 1058  kubectl edit svc my-cs -n=rajesh
+ 1059  clear
+ 1060  kubectl get pods -n=rajesh --show-labels;kubectl get svc -n=rajesh --show-labels;kubectl describe svc my-cs -n=rajesh
+ 1061  curl http://10.99.110.185:5678
+ 1062  watch curl http://10.99.110.185:5678
+ 1063  vi pod2.yaml
+ 1064  kubectl apply -f pod2.yaml -n=rajesh
+ 1065  clear
+ 1066  watch curl http://10.99.110.185:5678
